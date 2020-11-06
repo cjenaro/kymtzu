@@ -1,0 +1,22 @@
+.container {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
+}
+
+.container-h {
+  composes: container;
+  grid-template-rows: auto 1fr auto;
+}
+
+.header {
+  height: 40px;
+}
+
+.main {
+  height: 100%;
+}
+
+.footer {
+  height: 100px;
+}
