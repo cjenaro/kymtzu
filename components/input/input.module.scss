@@ -1,0 +1,41 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  line-height: 22px;
+  overflow: hidden;
+  color: #ffffff;
+
+  &::after {
+    content: "";
+    width: 200%;
+    height: 7px;
+    background-image: linear-gradient(to right, var(--pink) 0%, var(--pink) 50%, var(--pinkish) 50%);
+    transform: translateX(-50%);
+    transition: transform 0.3s ease;
+  }
+
+  &:focus-within {
+    &::after {
+      transform: translateX(0%);
+    }
+  }
+}
+
+.input {
+  margin-top: 5px;
+  padding: 12px 0;
+  font-size: 18px;
+  line-height: 22px;
+  background-color: transparent;
+  border: 0;
+  color: currentColor;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+}

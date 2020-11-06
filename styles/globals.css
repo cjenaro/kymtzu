@@ -1,5 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Telex&display=swap");
+
+:root {
+  --blue: #0e3150;
+  --pink: #ffc0c2;
+  --pinkish: #f7e9e3;
+}
+
 html,
 body {
+  font-family: "Telex", sans-serif;
+  background-color: var(--pinkish);
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,

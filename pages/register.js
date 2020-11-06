@@ -1,6 +1,11 @@
 import { useState } from "react";
 import router from "next/router";
 
+import Input from "../components/input";
+import Button from "../components/button";
+
+import styles from "../components/login/login.module.scss";
+
 export default function Register({ setUser }) {
   const [{ loading, error, data }, setState] = useState({});
 
@@ -34,27 +39,26 @@ export default function Register({ setUser }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">
-        Usuario:
-        <input
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit} className={styles.login}>
+        <Input
           type="email"
           placeholder="juan@gmail.com"
           id="username"
           name="username"
-        />
-      </label>
-      <label htmlFor="password">
-        Contraseña:
-        <input type="password" id="password" name="password" />
-      </label>
-      <label htmlFor="confirmPassword">
-        Confirmar Contraseña:
-        <input type="password" id="confirmPassword" name="confirmPassword" />
-      </label>
-      <button type="submit">Registrarse</button>
-      {loading && <p>Loading...</p>}
-      {error && <pre>{JSON.stringify(error, null, 2)}</pre>}
-    </form>
+        >
+          Usuario:
+        </Input>
+        <Input type="password" id="password" name="password">
+          Contraseña:
+        </Input>
+        <Input type="password" id="confirmPassword" name="confirmPassword">
+          Confirmar Contraseña:
+        </Input>
+        <Button type="submit">Registrarse</Button>
+        {loading && <p>Loading...</p>}
+        {error && <pre>{JSON.stringify(error, null, 2)}</pre>}
+      </form>
+    </div>
   );
 }

@@ -1,5 +1,10 @@
-import { useState } from 'react'
+import { useState } from "react";
 import Link from "next/link";
+
+import Input from "../input";
+import Button from "../button";
+
+import styles from "./login.module.scss";
 
 export default function LoginPage({ setUser }) {
   const [{ loading, error, data }, setState] = useState({});
@@ -28,26 +33,28 @@ export default function LoginPage({ setUser }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">
-        Usuario:
-        <input
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit} className={styles.login}>
+        <Input
           type="text"
           placeholder="juan@gmail.com"
           id="username"
           name="username"
-        />
-      </label>
-      <label htmlFor="password">
-        Usuario:
-        <input type="password" id="password" name="password" />
-      </label>
-      <button type="submit">Iniciar Sesión</button>
-      <Link href="/register">
-        <a>Registrarse</a>
-      </Link>
-      {loading && <pre>Loading...</pre>}
-      {error && <pre>{JSON.stringify(error, null, 2)}</pre>}
-    </form>
+        >
+          Usuario:
+        </Input>
+        <Input type="password" id="password" name="password">
+          Contraseña:
+        </Input>
+        <Button type="submit">Iniciar Sesión</Button>
+        <Link href="/register">
+          <Button type="button" variant="outlined">
+            Registrarse
+          </Button>
+        </Link>
+        {loading && <pre>Loading...</pre>}
+        {error && <pre>{JSON.stringify(error, null, 2)}</pre>}
+      </form>
+    </div>
   );
 }
