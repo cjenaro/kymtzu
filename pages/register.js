@@ -1,15 +1,20 @@
-import { useState } from 'react'
-import Link from "next/link";
+import { useState } from "react";
+import router from "next/router";
 
-export default function LoginPage({ setUser }) {
+export default function Register({ setUser }) {
   const [{ loading, error, data }, setState] = useState({});
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const { username, password } = event.target;
-    if (username.value && password.value) {
+    const { username, password, confirmPassword } = event.target;
+    if (
+      username.value &&
+      password.value &&
+      confirmPassword.value &&
+      password.value == confirmPassword.value
+    ) {
       setState({ loading: true });
-      const blob = await fetch("/api/login", {
+      const blob = await fetch("/api/register", {
         method: "POST",
         body: JSON.stringify({
           username: username.value,
@@ -20,7 +25,8 @@ export default function LoginPage({ setUser }) {
       const res = await blob.json();
       if (blob.ok) {
         setState({ data: res });
-        setUser(res);
+        setUser(res.data);
+        router.push("/");
       } else {
         setState({ error: res });
       }
@@ -32,21 +38,22 @@ export default function LoginPage({ setUser }) {
       <label htmlFor="username">
         Usuario:
         <input
-          type="text"
+          type="email"
           placeholder="juan@gmail.com"
           id="username"
           name="username"
         />
       </label>
       <label htmlFor="password">
-        Usuario:
+        Contraseña:
         <input type="password" id="password" name="password" />
       </label>
-      <button type="submit">Iniciar Sesión</button>
-      <Link href="/register">
-        <a>Registrarse</a>
-      </Link>
-      {loading && <pre>Loading...</pre>}
+      <label htmlFor="confirmPassword">
+        Confirmar Contraseña:
+        <input type="password" id="confirmPassword" name="confirmPassword" />
+      </label>
+      <button type="submit">Registrarse</button>
+      {loading && <p>Loading...</p>}
       {error && <pre>{JSON.stringify(error, null, 2)}</pre>}
     </form>
   );

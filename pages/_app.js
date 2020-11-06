@@ -1,6 +1,7 @@
 import { Flipper, Flipped } from "react-flip-toolkit";
 import Layout from "../components/layout";
-import LoginPage from "../components/login"
+import LoginPage from "../components/login";
+import RegisterPage from "./register";
 import useAuth from "../hooks/use-auth";
 import "../styles/globals.css";
 
@@ -15,7 +16,13 @@ function MyApp({ Component, pageProps, router }) {
             {user ? (
               <Component {...pageProps} />
             ) : (
-              <LoginPage setUser={setUser} />
+              <>
+                {router.asPath !== "/register" ? (
+                  <LoginPage setUser={setUser} />
+                ) : (
+                  <RegisterPage setUser={setUser} />
+                )}
+              </>
             )}
           </div>
         </Flipped>
