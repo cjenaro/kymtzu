@@ -24,3 +24,16 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.mapboxgl-popup .mapboxgl-popup-tip {
+  border-bottom-color: var(--blue);
+}
+
+.mapboxgl-popup .mapboxgl-popup-content {
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.mapboxgl-popup .mapboxgl-popup-close-button {
+  color: #fff;
+}
