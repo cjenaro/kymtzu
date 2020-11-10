@@ -8,6 +8,7 @@ export default function Input({
   id,
   children,
   name,
+  disabled,
 }) {
   return (
     <label htmlFor={id} className={styles.label}>
@@ -19,6 +20,7 @@ export default function Input({
         value={value}
         name={name}
         onChange={onChange}
+        disabled={disabled}
       />
     </label>
   );

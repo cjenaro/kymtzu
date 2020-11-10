@@ -24,16 +24,28 @@ a {
 * {
   box-sizing: border-box;
 }
+.mapboxgl-popup.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+  border-right-color: var(--blue);
+}
 
-.mapboxgl-popup .mapboxgl-popup-tip {
-  border-bottom-color: var(--blue);
+.mapboxgl-popup.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+  border-left-color: var(--blue);
+}
+
+.mapboxgl-popup.mapboxgl-popup .mapboxgl-popup-tip {
+  border-bottom-color: var(--blue) !important;
 }
 
 .mapboxgl-popup .mapboxgl-popup-content {
   background-color: var(--blue);
   color: #fff;
+  padding: 1.75rem 1rem;
 }
 
 .mapboxgl-popup .mapboxgl-popup-close-button {
   color: #fff;
+}
+
+.mapboxgl-popup-close-button {
+  font-size: 1.5rem;
 }
