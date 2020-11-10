@@ -1,0 +1,21 @@
+.btn {
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  will-change: transform;
+  transition: transform 0.2s ease;
+  position: absolute;
+  top: 0;
+  right: 30px;
+  cursor: pointer;
+  padding: 11px 0;
+}
+
+.inactive {
+  composes: btn;
+}
+
+.active {
+  composes: btn;
+  transform: rotate(90deg);
+}

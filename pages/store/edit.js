@@ -16,15 +16,25 @@ export const GRADES = [
   "reparto",
 ];
 
-export default function NewStore({ user }) {
-  const [location, setLocation] = useState({ lat: 0, lon: 0 });
+export default function EditStore({ user }) {
+  const [store, setStore] = useState({
+    lat: 0,
+    lon: 0,
+    name: "store",
+    precios: 0,
+    variedad: 0,
+    sucursales: 0,
+    calidad: 0,
+    publicidad: 0,
+    reparto: 0,
+  });
   const [{ loading, error }, setState] = useState({});
   useEffect(() => {
     if (typeof window === undefined) return;
 
     const search = decodeURIComponent(window.location.search.replace(/\?/, ""));
-    const loc = JSON.parse(search);
-    setLocation(loc);
+    const fromSearch = JSON.parse(search);
+    setStore({ ref: fromSearch.ref["@ref"].id, ...fromSearch.data });
   }, []);
 
   async function handleSubmit(event) {
@@ -39,24 +49,26 @@ export default function NewStore({ user }) {
       calidad,
       publicidad,
       reparto,
-    } = event.target;
+      ref,
+    } = store;
 
     if (
-      !name.value ||
-      !lat.value ||
-      !lon.value ||
-      !precios.value ||
-      !variedad.value ||
-      !sucursales.value ||
-      !calidad.value ||
-      !publicidad.value ||
-      !reparto.value
+      !name ||
+      !lat ||
+      !lon ||
+      !precios ||
+      !variedad ||
+      !sucursales ||
+      !calidad ||
+      !publicidad ||
+      !reparto ||
+      !ref
     ) {
       return;
     }
 
     setState({ loading: true });
-    const blob = await fetch("/api/store/new", {
+    const blob = await fetch("/api/store/edit", {
       method: "POST",
       headers: {
         Authorization: `${user.secret}:`,
@@ -64,15 +76,16 @@ export default function NewStore({ user }) {
       body: JSON.stringify({
         username: user.email,
         store: {
-          name: name.value,
-          lat: lat.value,
-          lon: lon.value,
-          precios: precios.value,
-          variedad: variedad.value,
-          sucursales: sucursales.value,
-          calidad: calidad.value,
-          publicidad: publicidad.value,
-          reparto: reparto.value,
+          name,
+          lat,
+          lon,
+          precios,
+          variedad,
+          sucursales,
+          calidad,
+          publicidad,
+          reparto,
+          ref,
         },
       }),
     });
@@ -89,7 +102,14 @@ export default function NewStore({ user }) {
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <Input type="text" id="name" placeholder="Los Tendillos" name="name">
+        <Input
+          type="text"
+          id="name"
+          placeholder="Los Tendillos"
+          name="name"
+          value={store.name}
+          onChange={(e) => setStore({ ...store, name: e.target.value })}
+        >
           Nombre:
         </Input>
         <Input
@@ -97,7 +117,7 @@ export default function NewStore({ user }) {
           id="lat"
           name="lat"
           disabled
-          value={location.lat}
+          value={store.lat}
           onChange={() => {}}
         >
           Lat:
@@ -107,17 +127,23 @@ export default function NewStore({ user }) {
           id="lon"
           name="lon"
           disabled
-          value={location.lon}
+          value={store.lon}
           onChange={() => {}}
         >
           Lon:
         </Input>
         {GRADES.map((grade) => (
-          <Grade key={grade} id={grade} name={grade}>
+          <Grade
+            key={grade}
+            id={grade}
+            name={grade}
+            value={store[grade]}
+            onChange={(e) => setStore({ ...store, [grade]: e.target.value })}
+          >
             {grade}:
           </Grade>
         ))}
-        <Button type="submit">Agregar</Button>
+        <Button type="submit">Editar</Button>
         {loading && <pre>Loading...</pre>}
         {error && <pre>{JSON.stringify(error, null, 2)}</pre>}
       </form>

@@ -5,16 +5,20 @@ export default (req, res) => {
     secret: process.env.FAUNADB_SERVER_SECRET,
   });
 
-  const { username, ref } = JSON.parse(req.body);
+  const { username } = req.query;
 
-  if (!req.headers.authorization || !username) {
-    res.statusCode = 401;
-    res.json({ message: "Necesitas iniciar sesión" });
-    return;
+  if (!username) {
+    res.statusCode = 400;
+    res.json({ message: "A username is required" });
   }
 
   adminClient
-    .query(q.Delete(q.Ref(q.Collection("stores"), ref)))
+    .query(
+      q.Map(
+        q.Paginate(q.Match(q.Index("stores_by_email"), username)),
+        q.Lambda("x", q.Get(q.Var("x")))
+      )
+    )
     .then((ret) => {
       res.statusCode = 200;
       res.json(ret);

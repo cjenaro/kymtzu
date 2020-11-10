@@ -1,0 +1,52 @@
+.popup {
+  background-color: var(--pinkish);
+  margin-top: -22px;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1rem;
+
+  p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:first-of-type {
+      max-width: 120px;
+    }
+  }
+}
+
+.menu {
+  width: 70%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  transform: translateX(-100%);
+  will-change: transform;
+  background-color: var(--blue);
+  padding: 0.5rem;
+  transition: transform 0.2s ease;
+  display: grid;
+  row-gap: 1rem;
+  align-content: flex-start;
+
+  button {
+    padding: 11px 0;
+  }
+}
+
+.closed {
+  composes: menu;
+}
+
+.open {
+  composes: menu;
+  transform: translateX(0%);
+}

@@ -5,7 +5,7 @@ export default (req, res) => {
     secret: process.env.FAUNADB_SERVER_SECRET,
   });
 
-  const { username, ref } = JSON.parse(req.body);
+  const { username, store } = JSON.parse(req.body);
 
   if (!req.headers.authorization || !username) {
     res.statusCode = 401;
@@ -14,7 +14,14 @@ export default (req, res) => {
   }
 
   adminClient
-    .query(q.Delete(q.Ref(q.Collection("stores"), ref)))
+    .query(
+      q.Update(q.Ref(q.Collection("stores"), store.ref), {
+        data: {
+          email: username,
+          ...store,
+        },
+      })
+    )
     .then((ret) => {
       res.statusCode = 200;
       res.json(ret);
