@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps, router }) {
 
   return (
     <Flipper flipKey={router.asPath}>
-      <Layout withHeader={!user}>
+      <Layout withHeader={!user} pathname={router.asPath}>
         <Flipped flipId="page">
           <div>
             {user ? (

@@ -1,8 +1,9 @@
 import Head from "next/head";
+import Link from "next/link";
 
 import styles from "./layout.module.scss";
 
-const Layout = ({ children, withHeader }) => (
+const Layout = ({ children, withHeader, pathname }) => (
   <div className={styles[withHeader ? "container-h" : "container"]}>
     <Head>
       <title>KymTzu</title>
@@ -13,7 +14,10 @@ const Layout = ({ children, withHeader }) => (
 
     <main className={styles.main}>{children}</main>
 
-    <footer className={styles.footer}>Por @cjenaro</footer>
+    <footer className={styles.footer}>
+      {pathname !== "/" ? <Link href="/">&larr; al incio</Link> : null}
+      <p>Por @cjenaro</p>
+    </footer>
   </div>
 );
 
