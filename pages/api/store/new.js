@@ -7,6 +7,12 @@ export default (req, res) => {
 
   const { username, store } = JSON.parse(req.body);
 
+  if (!req.headers.authorization || !username) {
+    res.statusCode = 401;
+    res.json({ message: "Necesitas iniciar sesión" });
+    return;
+  }
+
   adminClient
     .query(
       q.Create(q.Collection("stores"), {

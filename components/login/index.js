@@ -25,7 +25,7 @@ export default function LoginPage({ setUser }) {
       const res = await blob.json();
       if (blob.ok) {
         setState({ data: res });
-        setUser(res);
+        setUser({ email: username.value, secret: res.secret });
       } else {
         setState({ error: res });
       }

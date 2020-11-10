@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps, router }) {
         <Flipped flipId="page">
           <div>
             {user ? (
-              <Component {...pageProps} />
+              <Component {...pageProps} user={user} />
             ) : (
               <>
                 {router.asPath !== "/register" ? (
