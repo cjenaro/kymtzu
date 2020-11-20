@@ -3,4 +3,12 @@
   background-color: transparent;
   padding: 0;
   cursor: pointer;
+  svg {
+    max-width: 40px;
+  }
+}
+
+.path {
+  position: relative;
+  z-index: 2;
 }

@@ -3,57 +3,49 @@ import styles from "./bread.module.scss";
 export default function Bread({ onClick }) {
   return (
     <button type="button" onClick={onClick} className={styles.button}>
-      <svg
-        width="37"
-        height="37"
-        viewBox="0 0 37 37"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M6.13108 23.6028C4.12471 25.6091 4.12368 28.8631 6.13108 30.87C8.13746 32.8769 11.3924 32.8769 13.3988 30.8705L30.8705 13.3978C32.8769 11.3903 32.8769 8.13692 30.8705 6.13054C28.8631 4.12314 25.6097 4.12314 23.6028 6.13003L6.13108 23.6028Z"
-          fill="#F4AA41"
-        />
-        <path
-          d="M6.13108 23.6028C4.12471 25.6091 4.12368 28.8631 6.13108 30.87C8.13746 32.8769 11.3924 32.8769 13.3988 30.8705L30.8705 13.3978C32.8769 11.3903 32.8769 8.13692 30.8705 6.13054C28.8631 4.12314 25.6097 4.12314 23.6028 6.13003L6.13108 23.6028Z"
-          stroke="black"
-          strokeWidth="2"
-          strokeMiterlimit="10"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M23.6028 6.13003C21.5964 8.13692 21.5964 11.3909 23.6028 13.3978"
-          stroke="black"
-          strokeWidth="2"
-          strokeMiterlimit="10"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M19.2347 10.4981C17.2283 12.505 17.2283 15.7589 19.2347 17.7658"
-          stroke="black"
-          strokeWidth="2"
-          strokeMiterlimit="10"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M14.8667 14.8661C12.8608 16.8735 12.8608 20.1275 14.8667 22.1339"
-          stroke="black"
-          strokeWidth="2"
-          strokeMiterlimit="10"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M10.4992 19.2347C8.49279 21.2416 8.49279 24.4955 10.4992 26.5024"
-          stroke="black"
-          strokeWidth="2"
-          strokeMiterlimit="10"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+      <svg id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+        <g id="color">
+          <ellipse
+            cx="27.5034"
+            cy="53.4859"
+            rx="11.6561"
+            ry="7.8696"
+            fill="var(--blue)"
+          />
+          <path
+            fill="#d0cfce"
+            d="M30.6547,23.9855a14.0625,14.0625,0,0,1,7.21-1.89c4.7236,0,8.7752,6.4968,14.9073,6.4968.9039,0,1.3564-.4069,2.2686-.4069.7566,0,1.0586.5411,1.0586,1.496v1.6279c0,.7455-.8143,1.5923-3.2048,1.5923-7.1861,0-11.2378-4.0647-15.4069-4.0647a12.2077,12.2077,0,0,0-6.9151,2.3078v-4.438Z"
+          />
+        </g>
+        <g id="line">
+          <path
+            fill="none"
+            stroke="#000"
+            strokeLinecap="round"
+            strokeMiterlimit="10"
+            strokeWidth="2"
+            d="M32.1769,46.2743C36.2877,47.49,39.16,50.2617,39.16,53.4859c0,4.3462-5.2186,7.87-11.6561,7.87s-11.656-3.5234-11.656-7.87c0-3.1536,2.7474-5.8739,6.7144-7.1295"
+          />
+          <path
+            fill="#fff"
+            stroke="#000"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M30.6547,12.48a13.9517,13.9517,0,0,1,7.21-2.2332c4.7236,0,8.7752,4.1079,14.9073,4.1079.9039,0,1.3564-.4069,2.2686-.4069.7566,0,1.0586.5411,1.0586,1.496V31.3092c0,.7455-.8143,1.5923-3.2048,1.5923-7.1861,0-11.2378-4.0647-15.4069-4.0647a12.2077,12.2077,0,0,0-6.9151,2.3078v-4.438"
+          />
+          <line
+            x1="27.1824"
+            x2="27.1824"
+            y1="10.421"
+            y2="52.3401"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="round"
+            strokeMiterlimit="10"
+            strokeWidth="2"
+          />
+        </g>
       </svg>
     </button>
   );
