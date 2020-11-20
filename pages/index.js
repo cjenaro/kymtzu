@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Flipper, Flipped } from "react-flip-toolkit";
 import { useEffect, useState } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
@@ -12,11 +11,20 @@ export default function Home({ user }) {
   const { stores, loading, error } = useStores(user.email);
   const [activeStore, setActiveStore] = useState({});
   const [{ popupLong, popupLat }, setPopup] = useState({});
+  const savedLocation = window.localStorage.getItem("savedLocation");
+  let initLong = -122.4376;
+  let initLat = 37.7577;
+  if (savedLocation) {
+    const { longitude, latitude } = JSON.parse(savedLocation);
+    initLong = longitude;
+    initLat = latitude;
+  }
+
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
-    latitude: 37.7577,
-    longitude: -122.4376,
+    latitude: initLat,
+    longitude: initLong,
     zoom: 12,
   });
 
@@ -28,6 +36,11 @@ export default function Home({ user }) {
         longitude,
         latitude,
       });
+
+      window.localStorage.setItem(
+        "savedLocation",
+        JSON.stringify({ longitude, latitude })
+      );
     }
 
     if ("geolocation" in navigator) {
@@ -51,6 +64,8 @@ export default function Home({ user }) {
       onViewportChange={(nextViewPort) => setViewport(nextViewPort)}
       onDblClick={handleDoubleClick}
       doubleClickZoom={false}
+      dragRotate
+      touchRotate
     >
       {popupLong && popupLat && (
         <Popup
