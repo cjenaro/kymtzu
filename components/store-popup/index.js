@@ -27,6 +27,13 @@ export default function StorePopup({ store, set, user }) {
     });
   }
 
+  function getAvg(storeData, grades) {
+    return (
+      grades.reduce((acc, curr) => acc + Number(storeData[curr]), 0) /
+      grades.length
+    ).toFixed(2);
+  }
+
   return store && store.data ? (
     <Popup
       latitude={Number((store.data && store.data.lat) || 0)}
@@ -45,9 +52,13 @@ export default function StorePopup({ store, set, user }) {
         {GRADES.map((grade) => (
           <p key={grade}>
             <span>{grade}:</span>
-            <span>{store.data[grade]}</span>
+            <span>{Number(store.data[grade]).toFixed(2)}</span>
           </p>
         ))}
+        <p>
+          <span>Promedio:</span>
+          <span>{getAvg(store.data, GRADES)}</span>
+        </p>
       </div>
       <div className={styles[openMenu ? "open" : "closed"]}>
         <Button variant="outlined" onClick={handleDelete}>
